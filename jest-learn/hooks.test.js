@@ -1,4 +1,4 @@
-import { add, minus, multi } from "./index.js";
+import { add, minus, multi, asyncFunc, Counter } from "./index.js";
 /* 
 test("测试加法", () => {
   expect(add(3, 7)).toBe(10);
@@ -83,8 +83,6 @@ test("测试异常", () => {
 });
  */
 
-import { asyncFunc } from "./index.js";
-
 /* test("asyncFunc 返回结果为 {success: true}", () => {
   return asyncFunc().then(res => {
     expect(res).toEqual({ success: true });
@@ -110,11 +108,55 @@ test("asyncFunc 返回结果为 404", () => {
 });
  */
 
-test("asyncFunc 返回结果为 404", async () => {
+/* test("asyncFunc 返回结果为 404", async () => {
   expect.assertions(1); // 必须执行一次预计函数expect()
   try {
     await asyncFunc();
   } catch (e) {
     expect(e).toEqual(404);
   }
+});
+ */
+
+describe("Counter 全局测试环境", () => {
+  let counter = null;
+  beforeAll(() => {
+    console.log("beforeAll");
+  });
+
+  afterAll(() => {
+    console.log("afterAll");
+  });
+
+  beforeEach(() => {
+    // 每一个测试之前
+    console.log("beforeEach");
+    counter = new Counter();
+  });
+  afterEach(() => {
+    console.log("afterEach");
+  });
+
+  // describe 类似于分组
+  describe("测试增加功能", () => {
+    beforeAll(() => {
+      console.log("beforeAll add");
+    });
+    beforeEach(() => {
+      console.log("beforeEach add");
+      counter = new Counter();
+    });
+    test.only("Counter add", async () => {
+      console.log("add");
+      counter.add();
+      expect(counter.number).toBe(1);
+    });
+  });
+  describe("测试减少功能", () => {
+    test("Counter minus", async () => {
+      console.log("minus");
+      counter.minus();
+      expect(counter.number).toBe(-1);
+    });
+  });
 });

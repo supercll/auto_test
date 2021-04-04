@@ -20,3 +20,15 @@ export const asyncFunc = () => {
       return Promise.reject(e);
     });
 };
+
+export class Counter {
+  constructor() {
+    this.number = 0;
+  }
+  add() {
+    this.number++;
+  }
+  minus() {
+    this.number--;
+  }
+}
