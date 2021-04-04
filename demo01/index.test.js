@@ -2,7 +2,7 @@ function expect(res) {
   return {
     toBe: function (actual) {
       if (res !== actual) {
-        throw new Error("预期值和实际值不相等");
+        throw new Error(`预期值和实际值不相等 预期${actual} 结果却是${res}`);
       }
     },
   };
@@ -13,7 +13,7 @@ function test(desc, fn) {
     fn();
     console.log(`${desc}通过测试`);
   } catch (e) {
-    console.log(`${desc}未通过测试`);
+    console.log(`${desc}未通过测试 ${e}`);
   }
 }
 
