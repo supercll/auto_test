@@ -5,5 +5,5 @@ export function minus(a, b) {
   return a - b;
 }
 export function multi(a, b) {
-  return a + b;
+  return a * b;
 }
