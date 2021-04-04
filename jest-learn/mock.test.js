@@ -172,51 +172,54 @@ test("asyncFunc 返回结果为 404", () => {
 });
  */
 
-test.only("callback 测试", async () => {
-  const func = jest.fn(() => 456); // mock函数捕获函数的调用
-  /*  func.mockReturnValueOnce("lc"); // 修改返回结果一次，去掉Once就是全部修改
-  func.mockReturnValueOnce("lc2").mockReturnValueOnce("lc3");
-  func.mockReturnValueOnce("lc"); */
-  func.mockImplementation(() => {
-    console.log("123");
-    return "lc";
-  });
-  /*   func.mockImplementationOnce(() => {
-    console.log("123");
-    return "lc2";
-  }); */
-  func.mockImplementationOnce(() => {
-    console.log("123");
-    return this;
-  }); // === func.mockReturnThis();
-  runCallback(func);
-  runCallback(func);
-  runCallback(func);
-  expect(func.mock.calls.length).toBe(3); // 测试函数被调用的次数
-  expect(func.mock.calls[0]).toEqual([123]); // 测试函数参数
-  expect(func.mock.calls[0]).toEqual([123]); //
-  // expect(func.mock.results[0].value).toBe("lc2"); // 测试第一次的返回结果
-  expect(func.mock.results[1].value).toBe("lc");
-  expect(func).toBeUndefined(); // 返回undefined
-  expect(func).toBeCalledWith(123); // 每次返回123
-  console.log(func.mock);
-});
+// test.only("callback 测试", async () => {
+//   const func = jest.fn(() => 456); // mock函数捕获函数的调用
+//   /*  func.mockReturnValueOnce("lc"); // 修改返回结果一次，去掉Once就是全部修改
+//   func.mockReturnValueOnce("lc2").mockReturnValueOnce("lc3");
+//   func.mockReturnValueOnce("lc"); */
+//   func.mockImplementation(() => {
+//     console.log("123");
+//     return "lc";
+//   });
+//   /*   func.mockImplementationOnce(() => {
+//     console.log("123");
+//     return "lc2";
+//   }); */
+//   func.mockImplementationOnce(() => {
+//     console.log("123");
+//     return this;
+//   }); // === func.mockReturnThis();
+//   runCallback(func);
+//   runCallback(func);
+//   runCallback(func);
+//   expect(func.mock.calls.length).toBe(3); // 测试函数被调用的次数
+//   expect(func.mock.calls[0]).toEqual([123]); // 测试函数参数
+//   expect(func.mock.calls[0]).toEqual([123]); //
+//   // expect(func.mock.results[0].value).toBe("lc2"); // 测试第一次的返回结果
+//   expect(func.mock.results[1].value).toBe("lc");
+//   expect(func).toBeUndefined(); // 返回undefined
+//   expect(func).toBeCalledWith(123); // 每次返回123
+//   console.log(func.mock);
+// });
 
-test("createObject 测试", () => {
-  const func = jest.fn(() => 456);
-  createObject(func);
-  console.log(func.mock);
-});
+// test("createObject 测试", () => {
+//   const func = jest.fn(() => 456);
+//   createObject(func);
+//   console.log(func.mock);
+// });
 
-jest.mock("axios");
-test("getData 测试", async () => {
-  // 不会真正发送ajax请求，通过mock模拟
-  axios.get.mockResolvedValueOnce({ data: "lc" });
-  axios.get.mockResolvedValueOnce({ data: "CL" });
-  await getData().then(data => {
-    expect(data).toEqual("lc");
-  });
-  await getData().then(data => {
-    expect(data).toEqual("CL");
-  });
-});
+// jest.mock("axios");
+// test("getData 测试", async () => {
+//   // 不会真正发送ajax请求，通过mock模拟
+//   axios.get.mockResolvedValueOnce({ data: "lc" });
+//   axios.get.mockResolvedValueOnce({ data: "CL" });
+//   await getData().then(data => {
+//     expect(data).toEqual("lc");
+//   });
+//   await getData().then(data => {
+//     expect(data).toEqual("CL");
+//   });
+// });
+
+
+
