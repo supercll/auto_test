@@ -63,10 +63,11 @@ test("测试近似浮点数", () => {
   expect(a + b).toBeCloseTo(0.3);
 }); */
 
-test("测试字符串", () => {
+/* test("测试字符串", () => {
   const str = "lc";
   expect(str).toMatch("c");
 });
+
 
 test("测试数组包含", () => {
   const list = [1, 2, 3];
@@ -79,4 +80,41 @@ test("测试异常", () => {
   expect(() => {
     throw new Error("error");
   }).toThrow("error");
+});
+ */
+
+import { asyncFunc } from "./index.js";
+
+/* test("asyncFunc 返回结果为 {success: true}", () => {
+  return asyncFunc().then(res => {
+    expect(res).toEqual({ success: true });
+  });
+});
+
+test("asyncFunc 返回结果为 404", () => {
+  expect.assertions(1); // 必须执行一次
+  return asyncFunc().catch(e => {
+    expect(e.toString().indexOf(404) > -1).toBe(true);
+  });
+}); */
+/* test("asyncFunc 返回结果为 true", async () => {
+  await expect(asyncFunc()).resolves.toMatchObject({
+    success: true,
+  });
+}); */
+/* test("asyncFunc 返回结果", async () => {
+  const response = await asyncFunc();
+  expect(response).toEqual({
+    success: true,
+  });
+});
+ */
+
+test("asyncFunc 返回结果为 404", async () => {
+  expect.assertions(1); // 必须执行一次预计函数expect()
+  try {
+    await asyncFunc();
+  } catch (e) {
+    expect(e).toEqual(404);
+  }
 });
