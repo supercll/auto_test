@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function add(a, b) {
   return a + b;
 }
@@ -32,3 +34,14 @@ export class Counter {
     this.number--;
   }
 }
+
+export const runCallback = callback => {
+  callback(123);
+};
+
+export const createObject = classItem => {
+  new classItem();
+};
+export const getData = classItem => {
+  return axios.get("/api").then(res => res.data);
+};
